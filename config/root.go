@@ -18,6 +18,8 @@ type Config struct {
 	Redis struct {
 		URL      string
 		Password string
+		UserName string
+		DB       int
 	}
 }
 
