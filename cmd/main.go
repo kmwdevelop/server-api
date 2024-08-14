@@ -2,6 +2,7 @@ package main //TIP See GoLand help at <a href="https://www.jetbrains.com/help/go
 import (
 	"flag"
 	"fmt"
+	"server-api/cmd/app"
 	"server-api/config"
 )
 
@@ -11,5 +12,5 @@ func main() {
 	flag.Parse()
 	fmt.Println(*configFlag)
 	c := config.NewConfig(*configFlag)
-	fmt.Println(c)
+	app.NewApp(c)
 }

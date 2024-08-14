@@ -10,9 +10,10 @@ type Config struct {
 		Port string
 	}
 
-	DB struct {
-		URL      string
-		Password string
+	Mongo struct {
+		URL  string
+		DB   string
+		Like string
 	}
 
 	Redis struct {
