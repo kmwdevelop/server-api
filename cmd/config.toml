@@ -8,3 +8,6 @@ url = "redis-16297.c1.asia-northeast1-1.gce.redns.redis-cloud.com:16297"
 password = "S4ajwUpVb5VAIDT4Z4FWw4QRFUq9aMWb"
 userName = "default"
 db = 0
+
+[network]
+port = ":8080"
