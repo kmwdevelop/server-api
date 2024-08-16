@@ -29,7 +29,12 @@ func NewMongo(cfg *config.Config) (*MongoClient, error) {
 	} else {
 		m.db = m.client.Database(cfg.Mongo.DB)
 		m.like = m.db.Collection(cfg.Mongo.Like)
-		return m, nil
 		log.Println("Connected to MongoDB")
+		return m, nil
 	}
+
+	return m, nil
 }
+
+//gkmwdev
+//6cHdTA80zuB1MrgZ

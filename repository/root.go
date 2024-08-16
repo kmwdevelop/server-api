@@ -8,16 +8,16 @@ import (
 
 type Repository struct {
 	cfg   *config.Config
-	mongo *mongo.MongoClient
-	redis *redis.RedisClient
+	Mongo *mongo.MongoClient
+	Redis *redis.RedisClient
 }
 
 func NewRepository(cfg *config.Config) (*Repository, error) {
 	r := &Repository{cfg: cfg}
 	var err error
-	if r.mongo, err = mongo.NewMongo(cfg); err != nil {
+	if r.Mongo, err = mongo.NewMongo(cfg); err != nil {
 		return nil, err
-	} else if r.redis, err = redis.NewRedis(cfg); err != nil {
+	} else if r.Redis, err = redis.NewRedis(cfg); err != nil {
 		return nil, err
 	}
 
