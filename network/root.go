@@ -18,6 +18,7 @@ func NewNetwork(cfg *config.Config, service *service.Service) (*Network, error) 
 
 	// TODO Router
 	n.register("/health-check", GET, healthCheck)
+	newLike(n)
 	return n, nil
 }
 
