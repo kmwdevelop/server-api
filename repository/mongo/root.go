@@ -2,10 +2,12 @@ package mongo
 
 import (
 	"context"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
 	"server-api/config"
+	"time"
 )
 
 type MongoClient struct {
@@ -13,7 +15,7 @@ type MongoClient struct {
 	client *mongo.Client
 	db     *mongo.Database
 
-	like *mongo.Collection
+	stock *mongo.Collection
 }
 
 func NewMongo(cfg *config.Config) (*MongoClient, error) {
@@ -28,7 +30,7 @@ func NewMongo(cfg *config.Config) (*MongoClient, error) {
 		return nil, err
 	} else {
 		m.db = m.client.Database(cfg.Mongo.DB)
-		m.like = m.db.Collection(cfg.Mongo.Like)
+		m.stock = m.db.Collection(cfg.Mongo.Stock)
 		log.Println("Connected to MongoDB")
 		return m, nil
 	}
@@ -36,5 +38,18 @@ func NewMongo(cfg *config.Config) (*MongoClient, error) {
 	return m, nil
 }
 
-//gkmwdev
-//6cHdTA80zuB1MrgZ
+func (m *MongoClient) AddStock(name string) error {
+
+	opt := options.Update().SetUpsert(true)
+	filter := bson.M{"name": name}
+	update := bson.M{"$set": bson.M{
+		"name":     name,
+		"createAt": time.Now().Unix(),
+	}}
+
+	if _, err := m.stock.UpdateOne(context.Background(), filter, update, opt); err != nil {
+		return err
+	} else {
+		return nil
+	}
+}

@@ -3,6 +3,8 @@ package network
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"net/http"
+	"server-api/types"
 )
 
 type like struct {
@@ -24,7 +26,15 @@ func newLike(network *Network) {
 }
 
 func (l *like) addStock(c *gin.Context) {
+	var req types.AddStockReq
 
+	if err := c.ShouldBindJSON(&req); err != nil {
+		response(c, http.StatusUnprocessableEntity, err.Error())
+	} else if err = l.network.service.AddStock(req.Name); err != nil {
+		response(c, http.StatusInternalServerError, err.Error())
+	} else {
+		response(c, http.StatusOK, "success")
+	}
 }
 
 func (l *like) likeStock(c *gin.Context) {

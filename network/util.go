@@ -29,3 +29,11 @@ func (n *Network) register(path string, request API_REQUEST, h ...gin.HandlerFun
 		return nil
 	}
 }
+
+func response(c *gin.Context, statusCode int, result interface{}) {
+	type res struct {
+		Status int         `json:"status"`
+		Result interface{} `json:"result"`
+	}
+	c.JSON(statusCode, &res{Status: statusCode, Result: result})
+}

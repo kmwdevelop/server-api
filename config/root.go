@@ -11,9 +11,9 @@ type Config struct {
 	}
 
 	Mongo struct {
-		URL  string
-		DB   string
-		Like string
+		URL   string
+		DB    string
+		Stock string
 	}
 
 	Redis struct {

@@ -1,7 +1,7 @@
 [mongo]
 url = "mongodb+srv://test:1@cluster0.367c7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 db = "api-test"
-like = "like"
+stock = "stock"
 
 [redis]
 url = "redis-16297.c1.asia-northeast1-1.gce.redns.redis-cloud.com:16297"
